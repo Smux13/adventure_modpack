@@ -131,6 +131,7 @@ minetest.register_node("green_crystal:green_crystal_block", {
   paramtype = "light",
   sounds = default.node_sound_stone_defaults(),
   makes_footstep_sound = true,
+  is_ground_content = true,
 })
 
 minetest.register_node("green_crystal:green_crystal_ore", {
@@ -140,6 +141,7 @@ minetest.register_node("green_crystal:green_crystal_ore", {
   drop = "green_crystal:green_crystal",
   sounds = default.node_sound_stone_defaults(),
   makes_footstep_sound = true,
+  is_ground_content = true,
 })
 
 minetest.register_node("green_crystal:green_crystal_tnt", {
@@ -190,4 +192,27 @@ minetest.register_node("green_crystal:green_crystal_lamp", {
   },
   sounds = default.node_sound_glass_defaults(),
   makes_footstep_sound = true,
+})
+
+
+minetest.register_ore({
+  ore_type = "scatter",
+  ore = "green_crystal:green_crystal_ore",
+  wherein = "default:stone",
+  clust_scarcity = 13*13*13,
+  clust_num_ores = 5,
+  clust_size = 4,
+  y_max = -128,
+  y_min = -31000,
+})
+
+minetest.register_ore({
+  ore_type = "scatter",
+  ore = "green_crystal:green_crystal_block",
+  wherein = "default:stone",
+  clust_scarcity = 13*13*13,
+  clust_num_ores = 1,
+  clust_size = 2,
+  y_max = -1024,
+  y_min = -31000,
 })
