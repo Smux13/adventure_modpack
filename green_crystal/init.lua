@@ -117,26 +117,6 @@ local function green_tnt_check_if_activate(pos, node, puncher)
   end
 end
 
-local function after_place_green_tnt(pos, placer, itemstack, pointed_thing)
-  minetest.chat_send_all("Green Crystal TNT placed")
-  
-  minetest.add_particlespawner({
-    amount = 100,
-    time = 1,
-    minexptime = 1,
-    maxexptime = 3,
-    minpos = {x = pos.x-5, y = pos.y-5, z = pos.z-5},
-    maxpos = {x = pos.x+5, y = pos.y+5, z = pos.z+5},
-    minsize = 3,
-    maxsize = 6,
-    minvel = {x = -1, y = -1, z = -1},
-    maxvel = {x = 1, y = 1, z = 1},
-    minacc = {x = 0, y = 0, z = 0},
-    maxacc = {x = 0, y = 0, z = 0},
-    texture = "tnt_smoke.png",
-  })
-end
-
 -- the green crystal item
 minetest.register_craftitem("green_crystal:green_crystal", {
   description = "Green Crystal",
@@ -174,7 +154,6 @@ minetest.register_node("green_crystal:green_crystal_tnt", {
   },
   groups = {oddly_breakable_by_hand = 3, tnt = 1},
   on_punch = green_tnt_check_if_activate,
-  after_place = after_place_green_tnt,
   on_ignite = function(pos, igniter)
     green_tnt_replace_with_burning(pos)
     green_tnt_explode_delayed(pos)
