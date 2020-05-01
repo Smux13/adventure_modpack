@@ -87,11 +87,16 @@ local function green_tnt_explode(pos)
   end
 end
 
-local function green_tnt_explode_delayed(pos, igniter)
+local function green_tnt_explode_delayed(pos)
   minetest.chat_send_all("Delay: "..green_tnt_explosion_delay)
   minetest.after(green_tnt_explosion_delay, function()
       green_tnt_explode(pos)
     end)
+end
+
+local function green_tnt_replace_with_burning(pos)
+  minetest.chat_send_all("Green Crystal TNT is burning")
+  minetest.swap_node(pos, {name = "green_crystal:green_crystal_tnt_burning"})
 end
 
 local function green_tnt_check_if_activate(pos, node, puncher)
@@ -102,9 +107,8 @@ local function green_tnt_check_if_activate(pos, node, puncher)
 
   wielded_item_name = puncher:get_wielded_item():get_name()
 
-  if (wielded_item_name == "default:torch") or (wielded_item_name == "fire:flint_and_steel") then
-    minetest.chat_send_all("Green Crystal TNT is burning")
-    minetest.swap_node(pos, {name = "green_crystal:green_crystal_tnt_burning"})
+  if (wielded_item_name == "default:torch") then
+    green_tnt_replace_with_burning(pos)
     
     green_tnt_explode_delayed(pos)
   end
@@ -164,9 +168,10 @@ minetest.register_node("green_crystal:green_crystal_tnt", {
   groups = {oddly_breakable_by_hand = 3, tnt = 1},
   on_punch = green_tnt_check_if_activate,
   after_place = after_place_green_tnt,
-  --on_ignite = function(pos, igniter)
-  --  green_tnt_explode_delayed(pos)
-  --end
+  on_ignite = function(pos, igniter)
+    green_tnt_replace_with_burning(pos)
+    green_tnt_explode_delayed(pos)
+  end
 })
 
 minetest.register_node("green_crystal:green_crystal_tnt_burning", {
