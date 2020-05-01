@@ -129,6 +129,7 @@ minetest.register_node("green_crystal:green_crystal_block", {
   groups = {cracky = 1},
   drawtype = "allfaces",
   paramtype = "light",
+  light_source = 4,
   sounds = default.node_sound_stone_defaults(),
   makes_footstep_sound = true,
   is_ground_content = true,
