@@ -20,6 +20,8 @@ local function green_tnt_explode(pos)
 
   minetest.remove_node(pos) -- remove the exploded TNT
   
+  minetest.sound_play("tnt_explode", {pos = pos}, true)
+  
   collect_garbage_if_needed()
   
   -- make smoke particles
@@ -97,6 +99,7 @@ end
 local function green_tnt_replace_with_burning(pos)
   minetest.chat_send_all("Green Crystal TNT is burning")
   minetest.swap_node(pos, {name = "green_crystal:green_crystal_tnt_burning"})
+  minetest.sound_play("tnt_ignite", {pos = pos}, true)
 end
 
 local function green_tnt_check_if_activate(pos, node, puncher)
@@ -145,7 +148,9 @@ minetest.register_node("green_crystal:green_crystal_block", {
   tiles = {"green_crystal_green_crystal_block.png"},
   groups = {cracky = 1},
   drawtype = "allfaces",
-  paramtype = "light"
+  paramtype = "light",
+  sounds = default.node_sound_stone_defaults(),
+  makes_footstep_sound = true,
 })
 
 minetest.register_node("green_crystal:green_crystal_ore", {
@@ -153,6 +158,8 @@ minetest.register_node("green_crystal:green_crystal_ore", {
   tiles = {"green_crystal_green_crystal_ore.png"},
   groups = {cracky = 3},
   drop = "green_crystal:green_crystal",
+  sounds = default.node_sound_stone_defaults(),
+  makes_footstep_sound = true,
 })
 
 minetest.register_node("green_crystal:green_crystal_tnt", {
@@ -171,7 +178,9 @@ minetest.register_node("green_crystal:green_crystal_tnt", {
   on_ignite = function(pos, igniter)
     green_tnt_replace_with_burning(pos)
     green_tnt_explode_delayed(pos)
-  end
+  end,
+  sounds = default.node_sound_wood_defaults(),
+  makes_footstep_sound = true,
 })
 
 minetest.register_node("green_crystal:green_crystal_tnt_burning", {
