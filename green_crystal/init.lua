@@ -217,3 +217,37 @@ minetest.register_ore({
   y_max = -1024,
   y_min = -31000,
 })
+
+
+minetest.register_craft({
+  output = "green_crystal:green_crystal 9",
+  recipe = {
+    {"green_crystal:green_crystal_block"},
+  },
+})
+
+minetest.register_craft({
+  output = "green_crystal:green_crystal_block",
+  recipe = {
+    {"green_crystal:green_crystal", "green_crystal:green_crystal", "green_crystal:green_crystal"},
+    {"green_crystal:green_crystal", "green_crystal:green_crystal", "green_crystal:green_crystal"},
+    {"green_crystal:green_crystal", "green_crystal:green_crystal", "green_crystal:green_crystal"},
+  },
+})
+
+minetest.register_craft({
+  output = "green_crystal:green_crystal_lamp",
+  recipe = {
+    {"default:glass"},
+    {"green_crystal:green_crystal"},
+  },
+})
+
+minetest.register_craft({
+  output = "green_crystal:green_crystal_tnt",
+  recipe = {
+    {"green_crystal:green_crystal", "tnt:tnt_stick", "green_crystal:green_crystal"},
+    {"tnt:tnt_stick",               "tnt:tnt_stick", "tnt:tnt_stick"},
+    {"green_crystal:green_crystal", "tnt:tnt_stick", "green_crystal:green_crystal"},
+  },
+})
