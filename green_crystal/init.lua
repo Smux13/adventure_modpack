@@ -136,7 +136,7 @@ minetest.register_node("green_crystal:green_crystal_block", {
 minetest.register_node("green_crystal:green_crystal_ore", {
   description = "Green Crystal Ore",
   tiles = {"green_crystal_green_crystal_ore.png"},
-  groups = {cracky = 3},
+  groups = {cracky = 2},
   drop = "green_crystal:green_crystal",
   sounds = default.node_sound_stone_defaults(),
   makes_footstep_sound = true,
