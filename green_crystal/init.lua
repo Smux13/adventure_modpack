@@ -179,3 +179,15 @@ minetest.register_node("green_crystal:green_crystal_tnt_burning", {
   light_source = 10, -- make it glowing
   drop = "", -- don't drop anything
 })
+
+minetest.register_node("green_crystal:green_crystal_lamp", {
+  description = "Green Crystal Lamp",
+  tiles = {"green_crystal_green_crystal_lamp.png"},
+  light_source = minetest.LIGHT_MAX,
+  paramtype = "light",
+  groups = {
+    oddly_breakable_by_hand = 3,
+  },
+  sounds = default.node_sound_glass_defaults(),
+  makes_footstep_sound = true,
+})
