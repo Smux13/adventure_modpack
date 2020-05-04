@@ -31,6 +31,12 @@ function miner_machine_dig_recursive(pos, delay)
     maxacc = {x = 0, y = 0, z = 0},
     texture = "miner_machines_machine_smoke.png",
   })
+
+  minetest.sound_play("default_dug_node", {
+    pos = pos,
+    max_hear_distance = 20,
+    gain = 0.5,
+  })
   
   minetest.chat_send_all("Digging")
   
